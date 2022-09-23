@@ -28,6 +28,14 @@ function Navbar() {
       >
         About
       </Text>
+      <Text
+        component={Link}
+        variant="link"
+        to="/react-query"
+        onClick={() => toggleOpenSidebar(false)}
+      >
+        React Query Demo
+      </Text>
     </MantineNavbar>
   );
 }
