@@ -5,7 +5,7 @@
   "type": "module",
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "vite",
+    "dev": "yarn prettier && vite",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -17,6 +17,8 @@
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.1.0",
+    "prettier": "^2.7.1",
     "vite": "^3.1.0"
-  }
+  },
+  "prettier": "prettier --write \"src/**/*.{jsx,js}\" --config \".prettierrc\""
 }
