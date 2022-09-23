@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { AppShell, useMantineTheme } from "@mantine/core";
 import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer";
@@ -8,7 +7,6 @@ import Sidebar from "../components/Sidebar";
 
 function Shell() {
   const theme = useMantineTheme();
-  const [opened, setOpened] = useState(false);
 
   return (
     <AppShell
@@ -23,10 +21,10 @@ function Shell() {
       navbarOffsetBreakpoint="sm"
       asideOffsetBreakpoint="sm"
       fixed
-      navbar={<Navbar opened={opened} setOpened={setOpened} />}
+      navbar={<Navbar />}
       aside={<Sidebar />}
       footer={<Footer />}
-      header={<Header theme={theme} opened={opened} setOpened={setOpened} />}
+      header={<Header />}
     >
       <Outlet />
     </AppShell>

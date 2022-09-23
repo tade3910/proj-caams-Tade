@@ -1,12 +1,14 @@
 import { Navbar as MantineNavbar, Text } from "@mantine/core";
 import { Link } from "react-router-dom";
+import useStore from "../services/store";
 
-function Navbar({ opened, setOpened }) {
+function Navbar() {
+  const { openSidebar, toggleOpenSidebar } = useStore();
   return (
     <MantineNavbar
       p="md"
       hiddenBreakpoint="sm"
-      hidden={!opened}
+      hidden={!openSidebar}
       width={{ sm: 200, lg: 300 }}
     >
       <Text>Application navbar</Text>
@@ -14,7 +16,7 @@ function Navbar({ opened, setOpened }) {
         component={Link}
         variant="link"
         to="/"
-        onClick={() => setOpened((o) => !o)}
+        onClick={() => toggleOpenSidebar(false)}
       >
         Home
       </Text>
@@ -22,7 +24,7 @@ function Navbar({ opened, setOpened }) {
         component={Link}
         variant="link"
         to="/about"
-        onClick={() => setOpened((o) => !o)}
+        onClick={() => toggleOpenSidebar(false)}
       >
         About
       </Text>

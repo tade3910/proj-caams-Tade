@@ -1,8 +1,9 @@
-import { ActionIcon, useMantineColorScheme } from "@mantine/core";
+import { ActionIcon } from "@mantine/core";
 import { TbSun, TbMoonStars } from "react-icons/tb";
+import useStore from "../services/store";
 
 function ToggleTheme() {
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const { colorScheme, toggleColorScheme } = useStore();
   const dark = colorScheme === "dark";
 
   return (
