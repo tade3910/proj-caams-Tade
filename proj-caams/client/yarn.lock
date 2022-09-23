@@ -838,6 +838,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ag-grid-community@npm:^28.1.1":
+  version: 28.1.1
+  resolution: "ag-grid-community@npm:28.1.1"
+  checksum: ff8b55a4611ef99b64b347a66bfdb8a12c86cd3c58c7308f3e76370568db1fdaa93a9681f3deaf4dfaba70cd95d4f80c8fec443579ec5ee01aabcd731d81902e
+  languageName: node
+  linkType: hard
+
+"ag-grid-react@npm:^28.1.1":
+  version: 28.1.1
+  resolution: "ag-grid-react@npm:28.1.1"
+  dependencies:
+    prop-types: ^15.8.1
+  peerDependencies:
+    ag-grid-community: ~28.1.0
+    react: ^16.3.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.3.0 || ^17.0.0 || ^18.0.0
+  checksum: e4f04ac40460feb36bcabbe61e269faa83ea22e6a4b92bdf186fcda57542e041f0e001d797064e8e7fa340fdc889dd64a10224e1a7d51ff4284d8b47adf12c58
+  languageName: node
+  linkType: hard
+
 "agent-base@npm:6, agent-base@npm:^6.0.2":
   version: 6.0.2
   resolution: "agent-base@npm:6.0.2"
@@ -1087,6 +1107,8 @@ __metadata:
     "@types/react": ^18.0.17
     "@types/react-dom": ^18.0.6
     "@vitejs/plugin-react": ^2.1.0
+    ag-grid-community: ^28.1.1
+    ag-grid-react: ^28.1.1
     axios: ^0.27.2
     dayjs: ^1.11.5
     prettier: ^2.7.1

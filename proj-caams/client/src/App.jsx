@@ -8,6 +8,7 @@ const NotFound = Loadable(lazy(() => import("./pages/NotFound")));
 const Home = Loadable(lazy(() => import("./pages/Home")));
 const About = Loadable(lazy(() => import("./pages/About")));
 const ReactQueryDemo = Loadable(lazy(() => import("./pages/ReactQueryDemo")));
+const AgGridDemo = Loadable(lazy(() => import("./pages/AgGridDemo")));
 
 function App() {
   const { colorScheme, toggleColorScheme } = useStore();
@@ -30,6 +31,7 @@ function App() {
             <Route path="" element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="react-query" element={<ReactQueryDemo />} />
+            <Route path="ag-grid" element={<AgGridDemo />} />
           </Route>
         </Routes>
       </MantineProvider>

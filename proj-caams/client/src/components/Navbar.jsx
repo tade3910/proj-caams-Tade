@@ -36,6 +36,14 @@ function Navbar() {
       >
         React Query Demo
       </Text>
+      <Text
+        component={Link}
+        variant="link"
+        to="/ag-grid"
+        onClick={() => toggleOpenSidebar(false)}
+      >
+        AgGrid Demo
+      </Text>
     </MantineNavbar>
   );
 }
