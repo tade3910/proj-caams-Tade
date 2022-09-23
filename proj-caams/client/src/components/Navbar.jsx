@@ -44,6 +44,14 @@ function Navbar() {
       >
         AgGrid Demo
       </Text>
+      <Text
+        component={Link}
+        variant="link"
+        to="/mantine-form"
+        onClick={() => toggleOpenSidebar(false)}
+      >
+        Mantine From Demo
+      </Text>
     </MantineNavbar>
   );
 }
