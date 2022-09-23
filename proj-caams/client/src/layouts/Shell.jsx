@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { AppShell, Text, useMantineTheme } from "@mantine/core";
+import { AppShell, useMantineTheme } from "@mantine/core";
+import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
@@ -22,12 +23,12 @@ function Shell() {
       navbarOffsetBreakpoint="sm"
       asideOffsetBreakpoint="sm"
       fixed
-      navbar={<Navbar opened={opened} />}
+      navbar={<Navbar opened={opened} setOpened={setOpened} />}
       aside={<Sidebar />}
       footer={<Footer />}
       header={<Header theme={theme} opened={opened} setOpened={setOpened} />}
     >
-      <Text>Resize app to see responsive navbar in action</Text>
+      <Outlet />
     </AppShell>
   );
 }
