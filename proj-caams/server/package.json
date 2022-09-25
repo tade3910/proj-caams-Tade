@@ -18,7 +18,7 @@
         "dev": "yarn prettier && yarn prisma:dev && nodemon .",
         "prettier": "prettier --write \"{prisma,src,tests}/**/*.js\" --config \".prettierrc\"",
         "test": "yarn prisma:test && dotenv -e .env.test -- jest --runInBand"
-      },
+    },
     "dependencies": {
         "@prisma/client": "^4.3.1",
         "cors": "^2.8.5",
