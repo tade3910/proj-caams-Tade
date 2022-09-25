@@ -5,15 +5,20 @@
     "license": "UNLICENSED",
     "type": "module",
     "scripts": {
-        "start": "node .",
-        "dev": "yarn docker:up && yarn prisma migrate dev && nodemon .",
-        "prettier": "prettier --write \"{prisma,src,tests}/**/*.js\" --config \".prettierrc\"",
-        "test": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand",
         "docker:up": "docker compose up --detach --no-recreate --wait",
         "docker:down": "docker compose down --timeout 5",
-        "seed": "prisma db seed",
-        "studio": "prisma studio"
-    },
+        "prisma:format": "prisma format",
+        "prisma:generate": "prisma generate",
+        "prisma:dev": "yarn docker:up && dotenv -e .env -- prisma migrate dev",
+        "prisma:dev:studio": "yarn docker:up && dotenv -e .env -- prisma studio",
+        "prisma:dev:reset": "yarn docker:up && dotenv -e .env -- prisma migrate reset --force",
+        "prisma:test": "yarn docker:up && dotenv -e .env.test -- prisma migrate reset --force --skip-seed",
+        "prisma:test:studio": "yarn docker:up && dotenv -e .env.test -- prisma studio",
+        "start": "node .",
+        "dev": "yarn prettier && yarn prisma:dev && nodemon .",
+        "prettier": "prettier --write \"{prisma,src,tests}/**/*.js\" --config \".prettierrc\"",
+        "test": "yarn prisma:test && dotenv -e .env.test -- jest --runInBand"
+      },
     "dependencies": {
         "@prisma/client": "^4.3.1",
         "cors": "^2.8.5",
@@ -24,6 +29,7 @@
     "devDependencies": {
         "@faker-js/faker": "^7.5.0",
         "cross-env": "^7.0.3",
+        "dotenv-cli": "^6.0.0",
         "jest": "^29.0.3",
         "nodemon": "^2.0.20",
         "prettier": "^2.7.1",
