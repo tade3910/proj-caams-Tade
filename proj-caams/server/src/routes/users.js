@@ -2,6 +2,7 @@ import express from "express";
 import { checkToken } from "../util/middleware.js";
 import prisma from "../../prisma/client.js";
 import { emailSchema, requestIdSchema } from "../util/validators.js";
+import checkPermission from "../util/auth.js";
 
 const router = express.Router();
 const endpoint = "/users";
@@ -10,6 +11,13 @@ const endpoint = "/users";
 
 router.get(`${endpoint}`, checkToken, async (req, res, next) => {
   try {
+    checkPermission(req, {
+      method: "GET",
+      resource: endpoint,
+      role: req.user.role,
+      user: req.user.id,
+    });
+
     const { skip, take, ...rest } = req.query;
     // "skip" and "take" are for pagination,
     // see https://www.prisma.io/docs/concepts/components/prisma-client/pagination
@@ -22,11 +30,11 @@ router.get(`${endpoint}`, checkToken, async (req, res, next) => {
     }
 
     const filter =
-    conditions.length > 0
-      ? {
-          AND: conditions,
-        }
-      : {};
+      conditions.length > 0
+        ? {
+            AND: conditions,
+          }
+        : {};
 
     const data = await prisma.user.findMany({
       where: filter,
@@ -47,6 +55,15 @@ router.get(`${endpoint}/:id`, checkToken, async (req, res, next) => {
   try {
     const id = Number(req.params.id);
     requestIdSchema.parse(id);
+
+    checkPermission(req, {
+      method: "GET",
+      resource: endpoint,
+      role: req.user.role,
+      user: req.user.id,
+      owner: id,
+    });
+
     const data = await prisma.user.findUniqueOrThrow({
       where: { id },
     });
@@ -61,6 +78,13 @@ router.get(`${endpoint}/:id`, checkToken, async (req, res, next) => {
 
 router.post(`${endpoint}`, checkToken, async (req, res, next) => {
   try {
+    checkPermission(req, {
+      method: "POST",
+      resource: endpoint,
+      role: req.user.role,
+      user: req.user.id,
+    });
+
     const { email, ...rest } = req.body;
     emailSchema.parse(email);
     const data = await prisma.user.create({
@@ -79,6 +103,15 @@ router.put(`${endpoint}/:id`, checkToken, async (req, res, next) => {
   try {
     const id = Number(req.params.id);
     requestIdSchema.parse(id);
+
+    checkPermission(req, {
+      method: "PUT",
+      resource: endpoint,
+      role: req.user.role,
+      user: req.user.id,
+      owner: id,
+    });
+
     const { email, ...rest } = req.body;
     email && emailSchema.parse(email);
     const data = await prisma.user.update({
@@ -98,6 +131,15 @@ router.delete(`${endpoint}/:id`, checkToken, async (req, res, next) => {
   try {
     const id = Number(req.params.id);
     requestIdSchema.parse(id);
+
+    checkPermission(req, {
+      method: "DELETE",
+      resource: endpoint,
+      role: req.user.role,
+      user: req.user.id,
+      owner: id,
+    });
+    
     const data = await prisma.user.delete({
       where: { id },
     });
